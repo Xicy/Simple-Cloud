@@ -216,16 +216,13 @@ class FilesController extends Controller
 
     public function download()
     {
-        dd(URL::signedRoute('download'));
         $filename = "4.jpg";
         $fullfilepath = base_path('storage\\app\\public') . "\\" . $filename;
         $fullfilepath = str_replace('\\','/',$fullfilepath);
-//        $fullfilepath = "..\\storage\\app\\public\\" . $filename;
-//        dd($fullfilepath);
+	//dd(str_ireplace(base_path(),'',$fullfilepath));
         return response(null)
-//            ->header('Content-Type' , 'application/octet-stream')
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"')
-            ->header('X-Accel-Redirect', $fullfilepath)
+            ->header('X-Accel-Redirect', str_ireplace(base_path(),'',$fullfilepath))
             ->header('X-Sendfile', $fullfilepath);
     }
 }
