@@ -2,6 +2,11 @@ server {
     listen 80;
     listen [::]:80;
 
+    location /storage {
+      alias /var/www/storage/;
+      internal;
+    }
+
     root /var/www/public;
     index index.html index.htm index.php;
 
@@ -28,10 +33,5 @@ server {
 
     location ~ /\.ht {
         deny all;
-    }
-
-    location /storage/ {
-      internal;
-      alias /var/www/storage/;
     }
 }

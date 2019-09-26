@@ -226,3 +226,4 @@ class FilesController extends Controller
             ->header('X-Sendfile', $fullfilepath);
     }
 }
+
