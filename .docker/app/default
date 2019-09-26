@@ -2,8 +2,9 @@ server {
     listen 80;
     listen [::]:80;
     
+    root /var/www;
     index index.html index.htm index.php;
-
+    
     include h5bp/basic.conf;
 
     charset utf-8;
@@ -19,7 +20,6 @@ server {
     }
 
     location /storage {
-      root /var/www;
       internal;
     }
 
