@@ -1,12 +1,7 @@
 server {
     listen 80;
     listen [::]:80;
-
-    location /storage {
-      alias /var/www/storage/;
-      internal;
-    }
-
+    
     root /var/www/public;
     index index.html index.htm index.php;
 
@@ -21,6 +16,11 @@ server {
 
     location / {
         try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location /storage {
+      internal;
+      alias /var/www;
     }
 
     location ~ \.php$ {
