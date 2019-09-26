@@ -19,8 +19,8 @@ server {
     }
 
     location /storage {
+      root /var/www;
       internal;
-      alias /var/www/storage;
     }
 
     location ~ \.php$ {
