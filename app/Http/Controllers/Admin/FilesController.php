@@ -217,13 +217,10 @@ class FilesController extends Controller
     public function download()
     {
         $filename = "4.jpg";
-        $fullfilepath = base_path('storage\\app\\public') . "\\" . $filename;
-        $fullfilepath = str_replace('\\','/',$fullfilepath);
-	//dd(str_ireplace(base_path(),'',$fullfilepath));
         return response(null)
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"')
-            ->header('X-Accel-Redirect', str_ireplace(base_path(),'',$fullfilepath))
-            ->header('X-Sendfile', $fullfilepath);
+            ->header('X-Accel-Redirect', "storage/app/public/$filename")
+            ->header('X-Sendfile', base_path("storage/app/public/$filename"));
     }
 }
 
