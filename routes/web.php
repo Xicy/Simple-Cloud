@@ -3,7 +3,7 @@ Route::get('/', function () {
     return redirect('/admin/home');
 });
 
-Route::get("download", "Admin\FilesController@download")->middleware(['signed','auth'])->name('download');
+Route::get("download", "Admin\FilesController@download")->middleware([/*'signed',*/'auth'])->name('download');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
