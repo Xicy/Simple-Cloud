@@ -219,8 +219,8 @@ class FilesController extends Controller
         $filename = "4.jpg";
         return response(null)
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"')
-            ->header('X-Accel-Redirect', 'storage\\app\\public\\'.$filename)
-            ->header('X-Sendfile', base_path('storage\\app\\public'). "\\" . $filename);
+            ->header('X-Accel-Redirect', "storage/app/public/$filename")
+            ->header('X-Sendfile', base_path("storage/app/public/$filename"));
     }
 }
 
