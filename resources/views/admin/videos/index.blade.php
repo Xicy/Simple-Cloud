@@ -52,7 +52,7 @@
                                 @endcan
 
                                 <td field-key='name'>{{ $video->name }}</td>
-                                <td field-key='video'> @foreach($video->getMedia('video') as $media)
+                                <td field-key='video'> @foreach($video->getMedia('file') as $media)
                                 <p class="form-group">
                                     <a href="{{ $media->getUrl() }}" target="_blank">{{ $media->name }}  ({{ round($media->size / 1000000, 2) }} MB) </a>
                                 </p>

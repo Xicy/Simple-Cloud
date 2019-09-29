@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Facades\App;
 use App\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -12,7 +11,6 @@ use App\Http\Requests\Admin\UpdateVideosRequest;
 use App\Http\Controllers\Traits\FileUploadTrait;
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\Media;
-use Illuminate\Support\Facades\URL;
 
 class FilesController extends Controller
 {
@@ -68,7 +66,7 @@ class FilesController extends Controller
         }
         $request = $this->saveFiles($request);
         $video = Video::create($request->all() + ['user_id' => auth()->user()->id]);
-        foreach ($request->input('video_id', []) as $index => $id) {
+        foreach ($request->input('file_id', []) as $index => $id) {
             $model = config('medialibrary.media_model');
             $file = $model::find($id);
             $file->model_id = $video->id;
@@ -111,14 +109,14 @@ class FilesController extends Controller
         $video->update($request->all());
         if ($request->video === true) {
             $media = [];
-            foreach ($request->input('video_id[]') as $index => $id) {
+            foreach ($request->input('file_id[]') as $index => $id) {
                 $model = config('laravel-medialibrary.media_model');
                 $file = $model::find($id);
                 $file->model_id = $video->id;
                 $file->save();
                 $media[] = $file->toArray();
             }
-            $video->updateMedia($media, 'video');
+            $video->updateMedia($media, 'file');
         }
         return redirect()->route('admin.files.index');
     }
@@ -214,9 +212,13 @@ class FilesController extends Controller
         return redirect()->route('admin.files.index');
     }
 
-    public function download()
+    public function download($filename)
     {
-        $filename = "4.jpg";
+        $mediaId = explode('/', $filename)[0];
+        $model = \Spatie\MediaLibrary\Models\Media::findOrFail($mediaId);
+        if (!$model->model)
+            abort(404);
+
         return response(null)
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"')
             ->header('X-Accel-Redirect', "/storage/app/public/$filename")

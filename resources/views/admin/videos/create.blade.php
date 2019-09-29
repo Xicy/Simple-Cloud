@@ -24,21 +24,21 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('video', trans('quickadmin.videos.fields.video').'*', ['class' => 'control-label']) !!}
-                    {!! Form::file('video[]', [
+                    {!! Form::label('file', trans('quickadmin.videos.fields.video').'*', ['class' => 'control-label']) !!}
+                    {!! Form::file('file[]', [
                         'class' => 'form-control file-upload',
                         'data-url' => route('admin.media.upload'),
-                        'data-bucket' => 'video',
-                        'data-filekey' => 'video',
+                        'data-bucket' => 'file',
+                        'data-filekey' => 'file',
                         ]) !!}
                     <p class="help-block"></p>
                     <div class="photo-block">
                         <div class="progress-bar form-group">&nbsp;</div>
                         <div class="files-list"></div>
                     </div>
-                    @if($errors->has('video'))
+                    @if($errors->has('file'))
                         <p class="help-block">
-                            {{ $errors->first('video') }}
+                            {{ $errors->first('file') }}
                         </p>
                     @endif
                 </div>

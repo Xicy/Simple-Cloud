@@ -1,12 +1,11 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Spatie\MediaLibrary\FileAdder\FileAdder;
-use Illuminate\Contracts\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\Media;
 
 class SpatieMediaController extends Controller
@@ -15,7 +14,7 @@ class SpatieMediaController extends Controller
     /**
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function create(Request $request)
     {
@@ -36,7 +35,7 @@ class SpatieMediaController extends Controller
                 $model->exists = true;
                 $media = $model->addMedia($file)->toMediaCollection($request->input('bucket'), 'public');
                 $addedFiles[] = $media;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 abort(500, 'Could not upload your file');
             }
         }

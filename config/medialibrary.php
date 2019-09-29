@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PathGeneratorController;
+use App\Http\Controllers\Admin\UrlGeneratorController;
 
 return [
 
@@ -37,12 +38,12 @@ return [
      * When urls to files get generated, this class will be called. Leave empty
      * if your files are stored locally above the site root or on s3.
      */
-    'custom_url_generator_class' => null,
+    'url_generator' => UrlGeneratorController::class,
 
     /*
      * The class that contains the strategy for determining a media file's path.
      */
-    'custom_path_generator_class' => PathGeneratorController::class,
+    'path_generator' => PathGeneratorController::class,
 
     's3' => [
         /*
