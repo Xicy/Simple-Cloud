@@ -211,6 +211,7 @@ class FilesController extends Controller
 
     public function download($filename)
     {
+        $filename = "1/Opera-Anlık-Görüntü_2019-07-07_120835_www.spotify.com.png";
         $mediaId = explode('/', $filename);
         $model = \Spatie\MediaLibrary\Models\Media::findOrFail($mediaId[0]);
         if (!$model->model)
