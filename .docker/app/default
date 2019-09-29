@@ -14,7 +14,7 @@ server {
 
     client_max_body_size 100M;
 
-    location ^~ /download/ {
+    location ^~ /storage/ {
       alias /var/www/storage/;
       internal;
     }
