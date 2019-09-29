@@ -36,6 +36,7 @@ class SpatieMediaController extends Controller
                 $media = $model->addMedia($file)->toMediaCollection($request->input('bucket'), 'public');
                 $addedFiles[] = $media;
             } catch (Exception $e) {
+                throw $e;
                 abort(500, 'Could not upload your file');
             }
         }
