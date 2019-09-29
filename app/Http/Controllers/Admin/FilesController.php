@@ -215,7 +215,7 @@ class FilesController extends Controller
         $model = \Spatie\MediaLibrary\Models\Media::findOrFail($mediaId[0]);
         if (!$model->model)
             abort(404);
-
+        dd("/storage/app/public/$filename");
         return response(null)
             ->header('Content-Disposition', 'attachment; filename="' . $mediaId[1] . '"')
             ->header('X-Accel-Redirect', "/storage/app/public/$filename")
