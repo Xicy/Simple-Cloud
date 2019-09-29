@@ -15,7 +15,7 @@ server {
     client_max_body_size 2G;
 
     location ^~ /storage/ {
-      root /var/www/;
+      alias /var/www/storage/;
       internal;
     }
 
