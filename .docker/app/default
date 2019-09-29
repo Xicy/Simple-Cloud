@@ -14,17 +14,17 @@ server {
 
     client_max_body_size 100M;
 
+    location ^~ /storage/ {
+      alias /var/www/storage/;
+      internal;
+    }
+
     location / {
         try_files $uri $uri/ /index.php$is_args$args;
     }
 
-    location ~ ^/storage/(.*)$ {
-      alias /var/www/storage/$1;
-      internal;
-    }
-
     location ~ \.php$ {
-        add_header X-Served-By Baship;
+	add_header X-Served-By Baship;
         include snippets/fastcgi-php.conf;
         fastcgi_pass unix:/run/php/php7.3-fpm.sock;
     }
