@@ -5,7 +5,9 @@ server {
     root /var/www/public;
     index index.html index.htm index.php;
 
-    include h5bp/basic.conf;
+    location ^~ /(?!storage)/ {
+        include h5bp/basic.conf;
+    }
 
     charset utf-8;
 
