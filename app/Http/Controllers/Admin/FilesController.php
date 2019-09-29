@@ -211,13 +211,13 @@ class FilesController extends Controller
 
     public function download($filename)
     {
-        $mediaId = explode('/', $filename)[0];
-        $model = \Spatie\MediaLibrary\Models\Media::findOrFail($mediaId);
+        $mediaId = explode('/', $filename);
+        $model = \Spatie\MediaLibrary\Models\Media::findOrFail($mediaId[0]);
         if (!$model->model)
             abort(404);
 
         return response(null)
-            ->header('Content-Disposition', 'attachment; filename="' . $filename . '"')
+            ->header('Content-Disposition', 'attachment; filename="' . $filename[1] . '"')
             ->header('X-Accel-Redirect', "/storage/app/public/$filename")
             ->header('X-Sendfile', base_path("storage/app/public/$filename"));
     }
