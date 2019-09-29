@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use Illuminate\Database\Seeder;
 
 class RoleSeed extends Seeder
@@ -12,14 +13,14 @@ class RoleSeed extends Seeder
     public function run()
     {
         $items = [
-            
+
             ['id' => 1, 'title' => 'Administrator (can create other users)',],
             ['id' => 2, 'title' => 'Simple user',],
 
         ];
 
         foreach ($items as $item) {
-            \App\Role::create($item);
+            Role::create($item);
         }
     }
 }

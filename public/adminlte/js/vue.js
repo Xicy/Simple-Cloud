@@ -3027,7 +3027,7 @@
             // keep flushing until it depletes
             if (queue.length) {
                 _again = true;
-                continue _function;
+                continue;
             }
             // dev tool hook
             /* istanbul ignore if */

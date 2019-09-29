@@ -6,7 +6,7 @@
                 @lang('quickadmin.quickadmin_title')
             </a>
         </div>
-        <a href="javascript:;"
+        <a href="javascript:"
            class="menu-toggler responsive-toggler"
            data-toggle="collapse"
            data-target=".navbar-collapse">
@@ -14,7 +14,7 @@
 
         <div class="top-menu">
             <ul class="nav navbar-nav pull-right">
-                
+
             </ul>
         </div>
     </div>

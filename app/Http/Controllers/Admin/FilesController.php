@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Video;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\Admin\StoreVideosRequest;
 use App\Http\Requests\Admin\UpdateVideosRequest;
-use App\Http\Controllers\Traits\FileUploadTrait;
-use Illuminate\Support\Facades\Storage;
+use App\Video;
 use Spatie\MediaLibrary\Media;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class FilesController extends Controller
 {
@@ -19,7 +20,7 @@ class FilesController extends Controller
     /**
      * Display a listing of Video.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -43,7 +44,7 @@ class FilesController extends Controller
     /**
      * Show the form for creating new Video.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -57,7 +58,7 @@ class FilesController extends Controller
      * Store a newly created Video in storage.
      *
      * @param \App\Http\Requests\StoreVideosRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(StoreVideosRequest $request)
     {
@@ -80,7 +81,7 @@ class FilesController extends Controller
      * Show the form for editing Video.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -97,7 +98,7 @@ class FilesController extends Controller
      *
      * @param \App\Http\Requests\UpdateVideosRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(UpdateVideosRequest $request, $id)
     {
@@ -125,7 +126,7 @@ class FilesController extends Controller
      * Display Video.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id, Request $request)
     {
@@ -141,7 +142,7 @@ class FilesController extends Controller
      * Remove Video from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -182,7 +183,7 @@ class FilesController extends Controller
      * Restore Video from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function restore($id)
     {
@@ -199,7 +200,7 @@ class FilesController extends Controller
      * Permanently delete Video from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function perma_del($id)
     {

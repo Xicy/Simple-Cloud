@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Hash;
 use Validator;
+use Illuminate\View\View;
 
 class ChangePasswordController extends Controller
 {
@@ -29,7 +32,7 @@ class ChangePasswordController extends Controller
     /**
      * Change password form
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function showChangePasswordForm()
     {
@@ -42,7 +45,7 @@ class ChangePasswordController extends Controller
      * Change password.
      *
      * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @return $this|RedirectResponse
      */
     public function changePassword(Request $request)
     {

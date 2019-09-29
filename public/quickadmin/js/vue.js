@@ -3018,7 +3018,7 @@
     function flushBatcherQueue() {
         var _again = true;
 
-        _function: while (_again) {
+        while (_again) {
             _again = false;
 
             runBatcherQueue(queue);
@@ -3027,7 +3027,7 @@
             // keep flushing until it depletes
             if (queue.length) {
                 _again = true;
-                continue _function;
+                continue;
             }
             // dev tool hook
             /* istanbul ignore if */
