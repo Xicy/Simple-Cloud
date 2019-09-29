@@ -16,7 +16,6 @@ class Create1512299001VideosTable extends Migration
             Schema::create('videos', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->nullable();
-                $table->string('video')->nullable();
                 $table->unsignedInteger('user_id');
                 $table->timestamps();
                 $table->softDeletes();

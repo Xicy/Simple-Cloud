@@ -24,7 +24,6 @@ class FilesController extends Controller
      */
     public function index()
     {
-        // App::make('files')->link(storage_path('app/public'), public_path('storage'));
         if (!Gate::allows('video_access')) {
             return abort(401);
         }
@@ -57,7 +56,7 @@ class FilesController extends Controller
     /**
      * Store a newly created Video in storage.
      *
-     * @param \App\Http\Requests\StoreVideosRequest $request
+     * @param StoreVideosRequest $request
      * @return Response
      */
     public function store(StoreVideosRequest $request)
@@ -96,7 +95,7 @@ class FilesController extends Controller
     /**
      * Update Video in storage.
      *
-     * @param \App\Http\Requests\UpdateVideosRequest $request
+     * @param UpdateVideosRequest $request
      * @param int $id
      * @return Response
      */
@@ -128,13 +127,12 @@ class FilesController extends Controller
      * @param int $id
      * @return Response
      */
-    public function show($id, Request $request)
+    public function show($id)
     {
         if (!Gate::allows('video_view')) {
             return abort(401);
         }
         $video = Video::findOrFail($id);
-
         return view('admin.videos.show', compact('video'));
     }
 
@@ -151,11 +149,9 @@ class FilesController extends Controller
         }
         $video = Video::findOrFail($id);
         $video->deletePreservingMedia();
-        if (Storage::disk('s3')->exists($video->file_name)) {
+        if (Storage::disk('public')->exists($video->file_name)) {
             $video->delete();
         }
-        // $disk = Storage::disk('s3');
-        // $video = $disk->findUrl()->delete();
 
         return redirect()->route('admin.files.index');
     }
