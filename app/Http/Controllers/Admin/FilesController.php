@@ -217,8 +217,8 @@ class FilesController extends Controller
             abort(404);
 
         return response(null)
-            ->header('Content-Disposition', 'attachment; filename="' . $filename[1] . '"')
-            ->header('X-Accel-Redirect', "/storage/app/public/$filename")
+            ->header('Content-Disposition', 'attachment; filename="' . $mediaId[1] . '"')
+            ->header('X-Accel-Redirect', $filename)
             ->header('X-Sendfile', base_path("storage/app/public/$filename"));
     }
 }
