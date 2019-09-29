@@ -5,6 +5,12 @@ server {
     root /var/www/public;
     index index.html index.htm index.php;
 
+    location ^~ /storage/ {
+      internal;
+      alias /var/www/storage/;
+      include h5bp/basic.conf;
+    }
+
     include h5bp/basic.conf;
 
     charset utf-8;
@@ -13,11 +19,6 @@ server {
     location = /robots.txt  { log_not_found off; access_log off; }
 
     client_max_body_size 2G;
-
-    location ^~ /storage/ {
-      internal;
-      alias /var/www/storage/;
-    }
 
     location / {
         try_files $uri $uri/ /index.php$is_args$args;
