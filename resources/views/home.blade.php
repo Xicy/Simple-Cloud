@@ -9,6 +9,7 @@
                 <div class="panel-body">
                     @lang('quickadmin.qa_dashboard_text')
                 </div>
+
             </div>
         </div>
     </div>

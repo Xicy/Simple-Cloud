@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Laravel\Dusk\DuskServiceProvider;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -35,9 +34,6 @@ class AppServiceProvider extends ServiceProvider
         Collection::macro('lists', function ($a, $b = null) {
             return collect($this->items)->pluck($a, $b);
         });
-        if ($this->app->environment('local', 'testing')) {
-            //$this->app->register(DuskServiceProvider::class);
-        }
 
     }
 }
