@@ -1,5 +1,7 @@
 <?php
 
+use App\Foundation\Clients\Fiat;
+use App\Models\Coin;
 use Illuminate\Database\Seeder;
 
 class FiatSeeder extends Seeder
@@ -11,12 +13,12 @@ class FiatSeeder extends Seeder
      */
     public function run()
     {
-        /** @var \App\Models\Coin $coin */
-        $coin = \App\Models\Coin::create([
+        /** @var Coin $coin */
+        $coin = Coin::create([
             "name" => "Credit",
             "key" => "credit",
             "symbol" => "C",
-            "gateway" => \App\Foundation\Clients\Fiat::class,
+            "gateway" => Fiat::class,
             "height" => 0,
             "enable" => true,
             "block_time" => 60
