@@ -3,6 +3,7 @@
 namespace App;
 
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -23,5 +24,10 @@ class Video extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
 
+    }
+
+    public function medias()
+    {
+        return $this->morphMany(Media::class,"model");
     }
 }
