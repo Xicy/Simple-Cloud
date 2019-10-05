@@ -20,7 +20,6 @@ class Wallets extends Migration
             $table->string('address')->nullable()->unique();
             $table->string('password')->nullable();
 
-            $table->foreign('coin_id')->references('id')->on('coins');
         });
     }
 

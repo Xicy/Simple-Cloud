@@ -21,7 +21,6 @@ class Histories extends Migration
             $table->decimal('change', 32, 16);
             $table->timestamps();
 
-            $table->foreign('coin_id')->references('id')->on('coins');
         });
     }
 

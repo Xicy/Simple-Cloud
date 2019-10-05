@@ -25,7 +25,6 @@ class Transactions extends Migration
             $table->timestamps();
 
             $table->unique(["wallet_id", "txout", "tx_id"]);
-            $table->foreign('wallet_id')->references('id')->on('wallets');
         });
     }
 
