@@ -34,6 +34,9 @@
                                     <div class="col-xs-9 ">
                                         <div class="huge">{{$video_count}}</div>
                                         <div>Total Uplaoded Files</div>
+                                        {{ini_get("memory_limit")}}
+                                        {{ini_get("post_max_size")}}
+                                        {{ini_get("upload_max_filesize")}}
                                     </div>
                                 </div>
                             </div>
