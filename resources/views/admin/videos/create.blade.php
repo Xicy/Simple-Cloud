@@ -62,7 +62,7 @@ $(function () {
         var $this = $(this);
         var $parent = $(this).parent();
         $(this).fileupload({
-            maxChunkSize: 10000000, // 10 mb
+            maxChunkSize: 0, // 10 mb
             dataType: 'json',
             formData: {
                 model_name: 'Video',
