@@ -26,7 +26,7 @@ server {
     location ~ \.php$ {
 	    add_header X-Served-By Baship;
         include snippets/fastcgi-php.conf;
-        fastcgi_param PHP_VALUE "upload_max_filesize=2G \n post_max_size=0 \n memory_limit=2G";
+        fastcgi_param PHP_VALUE "upload_max_filesize=2G \n post_max_size=0 \n memory_limit=2G \n max_input_time=0 \n max_execution_time=0";
         fastcgi_pass unix:/run/php/php7.3-fpm.sock;
     }
 

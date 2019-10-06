@@ -31,13 +31,13 @@ class SpatieMediaController extends Controller
         $files = $request->file($request->input('file_key')); // file_key
         $addedFiles = [];
         foreach ($files as $file) {
-            try {
+            //try {
                 $model->exists = true;
                 $media = $model->addMedia($file)->toMediaCollection($request->input('bucket'), 'public');
                 $addedFiles[] = $media;
-            } catch (Exception $e) {
-                abort(500, 'Could not upload your file');
-            }
+            //} catch (Exception $e) {
+            //    abort(500, 'Could not upload your file');
+            //}
         }
 
         return response()->json([
