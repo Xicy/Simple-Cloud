@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="col-xs-9 ">
                                         <div class="huge">{{$video_count}}</div>
-                                        <div>Total Uplaoded Files</div>
+                                        <div>Total Uploaded Files</div>
                                     </div>
                                 </div>
                             </div>

@@ -1,10 +1,38 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
-		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
-		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
-		'videos' => [		'title' => 'Videos',		'fields' => [			'name' => 'Name',			'video' => 'Video',		],	],
+
+	'user-management' => [
+		'title' => 'User management',
+		'fields' => [
+		],
+	],
+
+	'roles' => [
+		'title' => 'Roles',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+
+	'users' => [
+		'title' => 'Users',
+		'fields' => [
+			'name' => 'Name',
+			'email' => 'Email',
+			'password' => 'Password',
+			'role' => 'Role',
+			'remember-token' => 'Remember token',
+		],
+	],
+
+	'videos' => [
+		'title' => 'Videos',
+		'fields' => [
+			'name' => 'Name',
+			'video' => 'Video',
+		],
+	],
 	'qa_create' => 'Oluştur',
 	'qa_save' => 'Kaydet',
 	'qa_edit' => 'Düzenle',
@@ -240,5 +268,5 @@ return [
 	'qa_parse_csv' => 'Yükle',
 	'qa_import_data' => 'Veriyi İçeri Al',
 	'qa_imported_rows_to_table' => ':rows sütunları :table tablosuna eklenmiştir',
-	'quickadmin_title' => 'NextCloud',
+	'quickadmin_title' => 'Simple Cloud',
 ];

@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'NextCloud',
+    'name' => 'Simple Cloud',
 
     /*
     |--------------------------------------------------------------------------
@@ -183,7 +183,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
-        
+
         /*
          * Application Service Providers...
          */
@@ -248,9 +248,9 @@ return [
         'Image'        => Intervention\Image\Facades\Image::class,
         'Form'         => Collective\Html\FormFacade::class,
         'Html'         => Collective\Html\HtmlFacade::class,
-        
+
     ],
 
-    
+
 
 ];

@@ -1,10 +1,38 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
-		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
-		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
-		'videos' => [		'title' => 'Videos',		'fields' => [			'name' => 'Name',			'video' => 'Video',		],	],
+
+	'user-management' => [
+		'title' => 'User management',
+		'fields' => [
+		],
+	],
+
+	'roles' => [
+		'title' => 'Roles',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+
+	'users' => [
+		'title' => 'Users',
+		'fields' => [
+			'name' => 'Name',
+			'email' => 'Email',
+			'password' => 'Password',
+			'role' => 'Role',
+			'remember-token' => 'Remember token',
+		],
+	],
+
+	'videos' => [
+		'title' => 'Videos',
+		'fields' => [
+			'name' => 'Name',
+			'video' => 'Video',
+		],
+	],
 	'qa_create' => 'Toevoegen',
 	'qa_save' => 'Opslaan',
 	'qa_edit' => 'Bewerken',
@@ -231,5 +259,5 @@ return [
 	'qa_when_crud' => 'wanneer CRUD',
 	'qa_create_new_notification' => 'Maak een nieuwe verwittiging aan',
 	'qa_stripe_transactions' => 'Stripe transacties',
-	'quickadmin_title' => 'NextCloud',
+	'quickadmin_title' => 'Simple Cloud',
 ];

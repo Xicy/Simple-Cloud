@@ -1,10 +1,38 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
-		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
-		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
-		'videos' => [		'title' => 'Videos',		'fields' => [			'name' => 'Name',			'video' => 'Video',		],	],
+
+	'user-management' => [
+		'title' => 'User management',
+		'fields' => [
+		],
+	],
+
+	'roles' => [
+		'title' => 'Roles',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+
+	'users' => [
+		'title' => 'Users',
+		'fields' => [
+			'name' => 'Name',
+			'email' => 'Email',
+			'password' => 'Password',
+			'role' => 'Role',
+			'remember-token' => 'Remember token',
+		],
+	],
+
+	'videos' => [
+		'title' => 'Videos',
+		'fields' => [
+			'name' => 'Name',
+			'video' => 'Video',
+		],
+	],
 	'qa_create' => 'Создать',
 	'qa_save' => 'Сохранить',
 	'qa_edit' => 'Редактировать',
@@ -237,5 +265,5 @@ return [
 	'qa_csv_file_to_import' => 'CSV файл для импорта',
 	'qa_parse_csv' => 'Спарсить CSV',
 	'qa_import_data' => 'Импорт данных',
-	'quickadmin_title' => 'NextCloud',
+	'quickadmin_title' => 'Simple Cloud',
 ];

@@ -1,10 +1,38 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
-		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
-		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
-		'videos' => [		'title' => 'Videos',		'fields' => [			'name' => 'Name',			'video' => 'Video',		],	],
+
+	'user-management' => [
+		'title' => 'User management',
+		'fields' => [
+		],
+	],
+
+	'roles' => [
+		'title' => 'Roles',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+
+	'users' => [
+		'title' => 'Users',
+		'fields' => [
+			'name' => 'Name',
+			'email' => 'Email',
+			'password' => 'Password',
+			'role' => 'Role',
+			'remember-token' => 'Remember token',
+		],
+	],
+
+	'videos' => [
+		'title' => 'Videos',
+		'fields' => [
+			'name' => 'Name',
+			'video' => 'Video',
+		],
+	],
 	'qa_create' => 'Crear',
 	'qa_save' => 'Guardar',
 	'qa_edit' => 'Editar',
@@ -236,5 +264,5 @@ return [
 	'qa_reset_password_woops' => '<strong>¡Ups!</strong> Hubo problemas con la entrada:',
 	'qa_copy_paste_url_bellow' => 'botón, copiar y pegar la siguiente URL en tu navegador',
 	'qa_file_contains_header_row' => '¿El fichero contiene fila de encabezado?',
-	'quickadmin_title' => 'NextCloud',
+	'quickadmin_title' => 'Simple Cloud',
 ];

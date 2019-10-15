@@ -5,7 +5,9 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
 
-
+            <li>
+                <img src="/logo.png">
+            </li>
 
             <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
                 <a href="{{ url('/') }}">
