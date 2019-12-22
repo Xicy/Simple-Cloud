@@ -43,7 +43,7 @@
                                         <i style="font-size:45px" class="fa fa-archive fa-stack-2x"></i>
                                     </div>
                                     <div class="col-xs-9 ">
-                                        <div class="huge">{{$user->wallets->first()->address}}</div>
+                                        <div class="huge">{{$user->wallets->first()->address ?? "Generating ..."}}</div>
                                         <div>Deposit Address</div>
                                     </div>
                                 </div>
