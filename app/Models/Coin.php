@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Foundation\Clients\Base;
 use App\Foundation\Clients\Fiat;
+use App\Foundation\Markets\Base as AppBase;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,10 +13,9 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  *
  * @property Base $client
+ * @property AppBase $market
  * @property Wallet[] $wallets
  * @property Transaction[] $transactions
- * @property History[] $histories
- * @property History $currency
  *
  * @property int $id
  * @property string $name
@@ -26,31 +26,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $gateway
  * @property string|null $rpc_url
  * @property bool $enable
+ * 
+ * @method Builder enable()
  *
  */
 class Coin extends Model
 {
-    public $timestamps = false;
     protected $fillable = ["name", "key", 'symbol', "gateway", "rpc_url", 'height', "enable", "block_time"];
+    public $timestamps = false;
 
     public function getRouteKeyName()
     {
         return 'key';
-    }
-
-    public function wallets()
-    {
-        return $this->hasMany(Wallet::class);
-    }
-
-    public function histories()
-    {
-        return $this->hasMany(History::class);
-    }
-
-    public function currency()
-    {
-        return $this->hasOne(History::class)->latest();
     }
 
     public function getClientAttribute()
@@ -58,9 +45,9 @@ class Coin extends Model
         return new $this->gateway($this->rpc_url);
     }
 
-    public function scopeNotFiat(Builder $query)
+    public function getMarketAttribute()
     {
-        return $query->where('gateway', '!=', Fiat::class);
+        return new $this->attributes["market"]($this->key);
     }
 
     public function scopeEnable(Builder $query)
@@ -68,6 +55,11 @@ class Coin extends Model
         return $query->where('enable', true);
     }
 
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class);
+    }
+    
     public function transactions()
     {
         return $this->hasManyThrough(Transaction::class, Wallet::class);

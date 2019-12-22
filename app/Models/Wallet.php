@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\DB;
  *
  * @property int $id
  * @property string|null $address
- * @property string|null $password
  * @property float $balance
+ * @property float $amount
  */
 class Wallet extends Model
 {
     public $timestamps = false;
-    protected $fillable = ["address", 'password', 'user_id'];
-    protected $hidden = ['coin_id', 'password', 'user_id'];
+    protected $fillable = ["address", 'user_id', 'coin_id'];
+    protected $hidden = ['coin_id', 'user_id'];
 
     public function user()
     {
@@ -36,25 +36,20 @@ class Wallet extends Model
 
     public function getBalanceAttribute()
     {
-        return (float)($this->transactions()
+        return (float) ($this->amount); //* $this->coin->market->getPrice();
+    }
+
+    public function getAmountAttribute()
+    {
+        return (float) ($this->transactions()
             ->select(DB::raw('(SUM((CASE WHEN (`type` = "withdraw") THEN -1 ELSE 1 END) * amount)) as balance'))
             ->where('status', '!=', 'canceled')
-            ->value("balance") ?: 0);
-
+            ->value('balance') ?: 0);
     }
 
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
-    }
-
-    public function getLockedAttribute()
-    {
-        return (float)($this->transactions()
-            ->select(DB::raw('(SUM((CASE WHEN (`type` = "withdraw") THEN 1 ELSE 1 END) * amount)) as balance'))
-            ->where('status', 'pending')
-            ->value("balance") ?: 0);
-
     }
 
     public function withdraw(string $address, float $amount, bool $exchange = null)

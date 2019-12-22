@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeed extends Seeder
@@ -13,13 +13,11 @@ class UserSeed extends Seeder
     public function run()
     {
         $items = [
-
-            ['id' => 1, 'name' => 'Admin', 'email' => 'admin@admin.com', 'password' => '$2y$10$ut/j7z9KpLJ1M4Ox3wcTN.e5ovCaIDbfSB4TxC6rwZoaZnQgftvmi', 'role_id' => 1, 'remember_token' => '',],
-
+            ['id' => 1, 'name' => 'Admin', 'email' => 'admin@admin.com', 'password' => '$2y$10$ut/j7z9KpLJ1M4Ox3wcTN.e5ovCaIDbfSB4TxC6rwZoaZnQgftvmi', 'role_id' => 1],
         ];
 
         foreach ($items as $item) {
-            User::create($item);
+            User::create($item)->wallets()->create(["coin_id" => 1]);
         }
     }
 }

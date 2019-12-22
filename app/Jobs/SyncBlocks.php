@@ -18,7 +18,7 @@ class SyncBlocks implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $coin;
+    public $coin = false;
     private $skip = 6;
     private $min_confirmations = 0;
 
@@ -29,7 +29,7 @@ class SyncBlocks implements ShouldQueue
     public function __construct(Coin $coin = null)
     {
         $this->coin = $coin;
-        $this->queue = "syncBlock";
+        $this->queue = "default";
     }
 
     /**
@@ -39,12 +39,17 @@ class SyncBlocks implements ShouldQueue
      */
     public function handle()
     {
-        if (!$this->coin) {
-            $active_coin_ids = DB::table('jobs')->where('id', '!=', $this->job->getJobId())->where('queue', $this->queue)->get('payload')->map(function ($v) {
-                return unserialize(json_decode($v->payload, true)["data"]["command"])->coin->id;
-            });
+        if ($this->coin == false) {
+            $active_coin_ids = DB::table('jobs')
+                ->where('id', '!=', $this->job->getJobId())
+                ->where('queue', $this->queue)->get('payload')->map(function ($v) {
+                    $payload = json_decode($v->payload, true);
+                    if ($payload == self::class)
+                        return unserialize($payload["data"]["command"])->coin->id;
+                    return 0;
+                });
 
-            Coin::whereNotIn('id', $active_coin_ids)->where('enable', true)->get()->each(function (Coin $coin) {
+            Coin::whereNotIn('id', $active_coin_ids)->enable()->get()->each(function (Coin $coin) {
                 self::dispatch($coin);
             });
             return;
@@ -53,6 +58,7 @@ class SyncBlocks implements ShouldQueue
         if ($this->coin->isFiat())
             $this->skip = 1;
 
+        Log::info("[{$this->coin->id}|{$this->coin->name}] " . get_class($this) . " Started");
         try {
             $client = &$this->coin->client;
             $block_count = $client->getblockcount();
@@ -64,7 +70,7 @@ class SyncBlocks implements ShouldQueue
                 return;
             }
 
-            $limitter = ceil(600 / $this->coin->block_time);
+            $limitter = ceil(60000 / $this->coin->block_time);
             collect(range($block_height, $last_block_height))->take($limitter)->each(function ($block_height) use (&$client) {
                 DB::transaction(function () use (&$client, &$block_height) {
                     $block_hash = $client->getblockhash($block_height);
@@ -85,7 +91,7 @@ class SyncBlocks implements ShouldQueue
                             Wallet::whereIn("address", $vout["scriptPubKey"]["addresses"])->get()->each(function (Wallet $wallet) use (&$vout, &$raw_tx, &$block, &$block_height) {
                                 $wallet->transactions()->create([
                                     "status" => "completed",
-                                    "amount" => $this->coin->isFiat() ? $vout["value"] / $wallet->coin->currency->price : $vout["value"],
+                                    "amount" => $this->coin->isFiat() ? $vout["value"] / $wallet->coin->market->getPrice() : $vout["value"],
                                     "tx_id" => $raw_tx["txid"],
                                     "type" => "deposit",
                                     "data" => [
@@ -101,12 +107,11 @@ class SyncBlocks implements ShouldQueue
                     $this->coin->height = $block_height;
                     $this->coin->save();
                 });
-
             });
-            self::dispatch($this->coin)->delay(15);
         } catch (ConnectionFailureException $e) {
             Log::error("[{$this->coin->id}|{$this->coin->name}] Unable to establish a connection {$this->coin->rpc_url}");
         }
+        Log::info("[{$this->coin->id}|{$this->coin->name}] ".get_class($this)." Ended");
 
     }
 }

@@ -36,19 +36,23 @@ class WalletAddressCreater implements ShouldQueue
      */
     public function handle()
     {
-        if (!$this->coin) {
+        if ($this->coin == false) {
             $active_coin_ids = DB::table('jobs')->where('id', '!=', $this->job->getJobId())->where('queue', $this->queue)->get('payload')->map(function ($v) {
-                return unserialize(json_decode($v->payload, true)["data"]["command"])->coin->id;
+                $payload = json_decode($v->payload, true);
+                if ($payload == self::class)
+                    return unserialize($payload["data"]["command"])->coin->id;
+                return 0;
             });
 
             Coin::whereNotIn('id', $active_coin_ids)
-                ->where('enable', true)
+                ->enable()
                 ->get()->each(function (Coin $coin) {
                     self::dispatch($coin);
                 });
             return;
         }
 
+        Log::info("[{$this->coin->id}|{$this->coin->name}] ".get_class($this)." Started");
         try {
             $client = &$this->coin->client;
             $wallets = $this->coin->wallets()->whereNull("address")->get();
@@ -66,9 +70,9 @@ class WalletAddressCreater implements ShouldQueue
                 });
                 $wallets->each->save();
             }
-            self::dispatch($this->coin)->delay(10);
         } catch (ConnectionFailureException $e) {
             Log::error("[{$this->coin->id}|{$this->coin->name}] Unable to establish a connection {$this->coin->rpc_url}");
         }
+        Log::info("[{$this->coin->id}|{$this->coin->name}] ".get_class($this)." Ended");
     }
 }

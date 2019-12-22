@@ -20,15 +20,9 @@ Artisan::command('queue:clear', function () {
 
 Artisan::command('sync:all', function () {
     dispatch(new \App\Jobs\SyncWithdraws());
-    dispatch(new \App\Jobs\SyncHistories());
     dispatch(new \App\Jobs\SyncBlocks());
     dispatch(new \App\Jobs\WalletAddressCreater());
 })->describe('Sync all');
-
-
-Artisan::command('sync:histories', function () {
-    dispatch(new \App\Jobs\SyncHistories());
-})->describe('Sync coin history data');
 
 Artisan::command('sync:blocks', function () {
     dispatch(new \App\Jobs\SyncBlocks());

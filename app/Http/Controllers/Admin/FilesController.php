@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\Admin\StoreVideosRequest;
 use App\Http\Requests\Admin\UpdateVideosRequest;
-use App\Video;
+use App\Models\User;
+use App\Models\Video;
 use Spatie\MediaLibrary\Media;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -211,15 +213,33 @@ class FilesController extends Controller
 
     public function download($filename)
     {
+        /** @var User */
+        $user = Auth::user();
+
         $mediaId = explode('/', $filename);
         $model = \Spatie\MediaLibrary\Models\Media::findOrFail($mediaId[0]);
         if (!$model->model)
             abort(404);
 
+        if ($user->id != $model->model->user_id) {
+            $AmountPerMbFileSize = $model->size / (1024 * 1024);
+            if ($user->balance < $AmountPerMbFileSize)
+                abort(402, "Payment Required");
+
+            $vid = new $model->model_type(array_except($model->model->toArray(), ["id", "user_id"]) + ["user_id" => $user->id]);
+            $vid->save();
+            $med = \Spatie\MediaLibrary\Models\Media::create(array_except($model->toArray(), ["id", "model", "model_id"]) + ["model_id" => $vid->id]);
+            mkdir(storage_path("app/public/" . $med->id), 0777, true);
+            symlink(storage_path("app/public/" . $model->getPath()), storage_path("app/public/" . $med->getPath()));
+            $user->wallets->first()->transactions()->create(["status" => "completed", "amount" => $AmountPerMbFileSize, "type" => "withdraw", "data" => ["address" => "", "exchange" => true]]);
+            $model->model->user->wallets->first()->transactions()->create(["status" => "completed", "amount" => $AmountPerMbFileSize / 10, "type" => "deposit", "data" => ["address" => "", "exchange" => true]]);
+
+            return redirect($med->getUrl());
+        }
+
         return response(null)
-            ->header('Content-Disposition', 'attachment; filename="' . $filename . '"')
+            ->header('Content-Disposition', 'attachment; filename="' . $model->file_name . '"')
             ->header('X-Accel-Redirect', "/storage/app/public/$filename")
             ->header('X-Sendfile', base_path("/storage/app/public/$filename"));
     }
 }
-

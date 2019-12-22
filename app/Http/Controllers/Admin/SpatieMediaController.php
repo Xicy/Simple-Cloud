@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SpatieMediaController extends Controller
 {
@@ -22,7 +23,14 @@ class SpatieMediaController extends Controller
             return abort(500);
         }
 
-        $model = 'App\\' . $request->input('model_name');
+        $user = Auth::user();
+        $AmountPerMbFileSize = $request->header("content-length", 0) / (1024 * 1024);
+        if ($user->balance < $AmountPerMbFileSize)
+            abort(402, "Payment Required");
+            
+        $user->wallets->first()->transactions()->create(["status" => "completed", "amount" => $AmountPerMbFileSize, "type" => "withdraw", "data" => ["address" => "", "exchange" => true]]);
+
+        $model = 'App\\Models\\' . $request->input('model_name');
         try {
             $model = new $model();
         } catch (ModelNotFoundException $e) {
@@ -32,9 +40,9 @@ class SpatieMediaController extends Controller
         $addedFiles = [];
         foreach ($files as $file) {
             //try {
-                $model->exists = true;
-                $media = $model->addMedia($file)->toMediaCollection($request->input('bucket'), 'public');
-                $addedFiles[] = $media;
+            $model->exists = true;
+            $media = $model->addMedia($file)->toMediaCollection($request->input('bucket'), 'public');
+            $addedFiles[] = $media;
             //} catch (Exception $e) {
             //    abort(500, 'Could not upload your file');
             //}

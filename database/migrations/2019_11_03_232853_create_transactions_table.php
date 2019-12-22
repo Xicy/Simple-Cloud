@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Transactions extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -25,6 +25,7 @@ class Transactions extends Migration
             $table->timestamps();
 
             $table->unique(["wallet_id", "txout", "tx_id"]);
+            //$table->foreign('wallet_id')->references('id')->on('wallets');
         });
     }
 

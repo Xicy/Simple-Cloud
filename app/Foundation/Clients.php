@@ -2,8 +2,6 @@
 
 namespace App\Foundation;
 
-use App\Foundation\Clients\BTC;
-use App\Foundation\Clients\DASH;
 use App\Models\Coin;
 
 class Clients
@@ -13,12 +11,8 @@ class Clients
 
     public function __construct()
     {
-        $classes = [
-            "dash" 	=> DASH::class,
-            "btc" 	=> BTC::class,
-        ];
-        foreach (Coin::get() as $coin){
-            $_class = $classes[$coin->gateway]??DASH::class;
+        foreach (Coin::get() as $coin) {
+            $_class = $coin->gateway ?? DASH::class;
             self::$clients[mb_strtolower($coin->key)] = new $_class($coin->rpc_url);
         }
     }
@@ -44,5 +38,4 @@ class Clients
             return self::$clients[self::$selected]->$name(...$arguments);
         return false;
     }
-
 }

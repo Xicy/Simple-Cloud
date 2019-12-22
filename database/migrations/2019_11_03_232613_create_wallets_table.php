@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Wallets extends Migration
+class CreateWalletsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,8 +18,9 @@ class Wallets extends Migration
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('coin_id')->index();
             $table->string('address')->nullable()->unique();
-            $table->string('password')->nullable();
 
+            //$table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('coin_id')->references('id')->on('coins');
         });
     }
 

@@ -3,7 +3,6 @@
 namespace App\Console;
 
 use App\Jobs\SyncBlocks;
-use App\Jobs\SyncHistories;
 use App\Jobs\SyncWithdraws;
 use App\Jobs\WalletAddressCreater;
 use Illuminate\Console\Scheduling\Schedule;
@@ -28,7 +27,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new SyncHistories())->everyFiveMinutes();
         $schedule->job(new SyncBlocks())->everyFiveMinutes();
         $schedule->job(new WalletAddressCreater())->everyFiveMinutes();
         $schedule->job(new SyncWithdraws())->everyFiveMinutes();

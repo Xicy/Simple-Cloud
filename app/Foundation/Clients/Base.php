@@ -4,7 +4,6 @@ namespace App\Foundation\Clients;
 
 use Exception;
 use JsonRPC\Client;
-use JsonRPC\HttpClient;
 
 /**
  * Class Base
@@ -27,6 +26,7 @@ use JsonRPC\HttpClient;
  * @method mixed getblock(string $blockhash, bool $verbose = true)
  * @method mixed getrawtransaction(string $txid, int $verbose = 1)
  * @method mixed sendtoaddress(string $address, float $amount, string $comment = "", string $comment_to = "", bool $subtractfeefromamount = false)
+ * @method mixed validateaddress(string $address)
  *
  */
 abstract class Base
@@ -55,7 +55,8 @@ abstract class Base
             $this->user = $url["user"] ?? $rpc_info["user"] ?? "username";
             $this->password = $url["pass"] ?? $rpc_info["pass"] ?? "password";
         }
-        $this->client = new Client("$this->schema$this->host:$this->port");
+        $url = "$this->schema$this->host:$this->port";
+        $this->client = new Client($url, false, new HttpClient($url));
         $this->client->authentication($this->user, $this->password);
     }
 

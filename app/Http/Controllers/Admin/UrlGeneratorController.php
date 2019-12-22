@@ -10,8 +10,14 @@ class UrlGeneratorController extends BaseUrlGenerator
 {
     public function getUrl(): string
     {
-        return URL::signedRoute("download", ["filename" => $this->pathGenerator->getPath($this->media) . $this->media->file_name]);
+        return URL::signedRoute("download", ["filename" => $this->getPath() ]);
     }
+
+    public function getPath(): string
+    {
+        return $this->pathGenerator->getPath($this->media) . $this->media->file_name;
+    }
+
 
     public function getTemporaryUrl(DateTimeInterface $expiration, array $options = []): string
     {

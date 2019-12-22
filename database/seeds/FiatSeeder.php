@@ -1,6 +1,6 @@
 <?php
 
-use App\Foundation\Clients\Fiat;
+use App\Foundation\Clients\DASH;
 use App\Models\Coin;
 use Illuminate\Database\Seeder;
 
@@ -14,15 +14,16 @@ class FiatSeeder extends Seeder
     public function run()
     {
         /** @var Coin $coin */
-        $coin = Coin::create([
-            "name" => "Credit",
-            "key" => "credit",
-            "symbol" => "C",
-            "gateway" => Fiat::class,
+        Coin::create([
+            "name" => "Simple Software Solutions",
+            "key" => "sssolutions",
+            "symbol" => "SSS",
+            "gateway" => DASH::class,
+            "rpc_url" => "http://sdjvndflhbvdflbh:akjfngvklebgvlkfsdbgvlkfds@199.247.7.91:6740",
+            //"market" => Coingecko::class,
             "height" => 0,
             "enable" => true,
             "block_time" => 60
         ]);
-        $coin->histories()->create(["price" => 1, "change" => 0]);
     }
 }

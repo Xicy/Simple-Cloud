@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class Coins extends Migration
+class CreateCoinsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -15,10 +14,11 @@ class Coins extends Migration
     public function up()
     {
         Schema::create('coins', function (Blueprint $table) {
-            $table->bigIncrements("id");
-            $table->string('name');
+            $table->bigIncrements('id');
+            $table->string("name");
             $table->string('symbol');
             $table->string('gateway');
+            $table->string('market')->nullable();
             $table->string('key')->unique();
             $table->string('rpc_url')->nullable();
             $table->unsignedBigInteger('height')->default(0);

@@ -33,14 +33,14 @@ class Transaction extends Model
         return $this->belongsTo(Wallet::class);
     }
 
-    public function getUserAttribute()
+    public function user()
     {
-        return $this->wallet->user;
+        return $this->hasOneThrough(User::class, Wallet::class,"id", "id", "wallet_id", "user_id");
     }
 
-    public function getCoinAttribute()
+    public function coin()
     {
-        return $this->wallet->coin;
+        return $this->hasOneThrough(Coin::class, Wallet::class,"id", "id", "wallet_id", "coin_id");
     }
 
     public function getGroupOfDateAttribute()
