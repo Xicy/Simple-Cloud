@@ -87,6 +87,6 @@ class __TwigTemplate_1b3cd7d4725c8a8610948677bb3937ac46f5f5147041eb1c4f99baebe42
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/column_length.twig", "/var/www/public/pma/templates/columns_definitions/column_length.twig");
+        return new Source("", "columns_definitions/column_length.twig", "/var/www/public/pma_next_12/templates/columns_definitions/column_length.twig");
     }
 }

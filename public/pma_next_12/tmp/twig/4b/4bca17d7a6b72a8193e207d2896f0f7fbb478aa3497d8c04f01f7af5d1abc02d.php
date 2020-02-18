@@ -75,6 +75,6 @@ class __TwigTemplate_128193184eefa2dfd73dca0f67e78a96cd6b820da5ca51817328bbcad4a
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/column_comment.twig", "/var/www/public/pma/templates/columns_definitions/column_comment.twig");
+        return new Source("", "columns_definitions/column_comment.twig", "/var/www/public/pma_next_12/templates/columns_definitions/column_comment.twig");
     }
 }

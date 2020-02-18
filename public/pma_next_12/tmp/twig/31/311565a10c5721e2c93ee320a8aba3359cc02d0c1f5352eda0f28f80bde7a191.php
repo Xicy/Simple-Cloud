@@ -82,6 +82,6 @@ class __TwigTemplate_3bd0e12898bee160e141586bb6d04728aecb75fcc9752d98bea99b9cede
 
     public function getSourceContext()
     {
-        return new Source("", "select_all.twig", "/var/www/public/pma/templates/select_all.twig");
+        return new Source("", "select_all.twig", "/var/www/public/pma_next_12/templates/select_all.twig");
     }
 }

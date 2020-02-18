@@ -113,6 +113,6 @@ class __TwigTemplate_7868803d58788a316ad7d8a32c4bb3eb5bc8bea0ffedef4d800d3fcda04
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/action_row_in_structure_table.twig", "/var/www/public/pma/templates/table/structure/action_row_in_structure_table.twig");
+        return new Source("", "table/structure/action_row_in_structure_table.twig", "/var/www/public/pma_next_12/templates/table/structure/action_row_in_structure_table.twig");
     }
 }

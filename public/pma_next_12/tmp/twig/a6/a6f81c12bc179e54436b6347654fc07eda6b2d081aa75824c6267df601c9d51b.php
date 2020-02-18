@@ -73,6 +73,6 @@ class __TwigTemplate_a21ab7181f3ad73da15a983b9c622a3bf742bb4761a4090c3e3507490ae
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/column_auto_increment.twig", "/var/www/public/pma/templates/columns_definitions/column_auto_increment.twig");
+        return new Source("", "columns_definitions/column_auto_increment.twig", "/var/www/public/pma_next_12/templates/columns_definitions/column_auto_increment.twig");
     }
 }

@@ -74,6 +74,6 @@ class __TwigTemplate_5a5839eff4b49a396d4f36e94ea273233721634151eafff9e3ae1b589d0
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/column_null.twig", "/var/www/public/pma/templates/columns_definitions/column_null.twig");
+        return new Source("", "columns_definitions/column_null.twig", "/var/www/public/pma_next_12/templates/columns_definitions/column_null.twig");
     }
 }

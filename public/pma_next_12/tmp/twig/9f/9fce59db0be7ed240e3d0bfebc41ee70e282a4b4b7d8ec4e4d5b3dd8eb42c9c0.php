@@ -78,6 +78,6 @@ class __TwigTemplate_edecd7c16f024743914708ecbc4943ed03a781668b70619d3c8b8043099
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/column_type.twig", "/var/www/public/pma/templates/columns_definitions/column_type.twig");
+        return new Source("", "columns_definitions/column_type.twig", "/var/www/public/pma_next_12/templates/columns_definitions/column_type.twig");
     }
 }

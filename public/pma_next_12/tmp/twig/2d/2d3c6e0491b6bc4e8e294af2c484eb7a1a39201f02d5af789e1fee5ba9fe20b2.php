@@ -447,6 +447,6 @@ $context["row"], "Field", [], "array"), ($context["central_list"] ?? null))) ? (
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/display_structure.twig", "/var/www/public/pma/templates/table/structure/display_structure.twig");
+        return new Source("", "table/structure/display_structure.twig", "/var/www/public/pma_next_12/templates/table/structure/display_structure.twig");
     }
 }

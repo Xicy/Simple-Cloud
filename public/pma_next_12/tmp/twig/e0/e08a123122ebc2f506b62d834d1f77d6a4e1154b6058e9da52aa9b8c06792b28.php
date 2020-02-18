@@ -231,6 +231,6 @@ class __TwigTemplate_28f592afe2ec8261575533701a3be053f3fd10ac36c47930f21d6c4afb8
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/display_table_stats.twig", "/var/www/public/pma/templates/table/structure/display_table_stats.twig");
+        return new Source("", "table/structure/display_table_stats.twig", "/var/www/public/pma_next_12/templates/table/structure/display_table_stats.twig");
     }
 }

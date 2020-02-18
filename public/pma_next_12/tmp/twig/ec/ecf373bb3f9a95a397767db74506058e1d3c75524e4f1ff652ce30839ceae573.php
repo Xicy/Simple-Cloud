@@ -305,6 +305,6 @@ class __TwigTemplate_a6f56f8d4e1c0db1533283cedea56a27f62df70074a628016e00fc2f979
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/table_fields_definitions.twig", "/var/www/public/pma/templates/columns_definitions/table_fields_definitions.twig");
+        return new Source("", "columns_definitions/table_fields_definitions.twig", "/var/www/public/pma_next_12/templates/columns_definitions/table_fields_definitions.twig");
     }
 }

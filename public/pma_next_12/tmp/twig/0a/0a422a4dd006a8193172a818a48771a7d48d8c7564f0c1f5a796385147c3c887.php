@@ -293,6 +293,6 @@ class __TwigTemplate_17cc9837e76f04695e482392f514e365778a9e21d4bd4e6a417fdfcccfe
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/row_stats_table.twig", "/var/www/public/pma/templates/table/structure/row_stats_table.twig");
+        return new Source("", "table/structure/row_stats_table.twig", "/var/www/public/pma_next_12/templates/table/structure/row_stats_table.twig");
     }
 }

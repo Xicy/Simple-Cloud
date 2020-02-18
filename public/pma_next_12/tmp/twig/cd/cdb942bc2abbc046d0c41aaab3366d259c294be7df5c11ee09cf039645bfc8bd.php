@@ -136,6 +136,6 @@ class __TwigTemplate_22f9d03ad1fba66dca1b85b819a359e1f453ed0801267307bbcbb3c888e
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/add_column.twig", "/var/www/public/pma/templates/table/structure/add_column.twig");
+        return new Source("", "table/structure/add_column.twig", "/var/www/public/pma_next_12/templates/table/structure/add_column.twig");
     }
 }

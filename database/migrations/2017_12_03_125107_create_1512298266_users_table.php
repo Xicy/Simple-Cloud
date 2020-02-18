@@ -19,9 +19,8 @@ class Create1512298266UsersTable extends Migration
                 $table->string('email');
                 $table->string('password');
                 $table->string('remember_token')->nullable();
-                
+                $table->boolean('haveMasternode')->default(false);
                 $table->timestamps();
-                
             });
         }
     }

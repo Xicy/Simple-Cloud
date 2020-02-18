@@ -133,6 +133,6 @@ $context["key"] != "")) && (strpos($this->getAttribute(            // line 8
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/column_virtuality.twig", "/var/www/public/pma/templates/columns_definitions/column_virtuality.twig");
+        return new Source("", "columns_definitions/column_virtuality.twig", "/var/www/public/pma_next_12/templates/columns_definitions/column_virtuality.twig");
     }
 }

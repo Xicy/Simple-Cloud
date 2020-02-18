@@ -71,6 +71,6 @@ class __TwigTemplate_afd7a09023905dca80f59ed12956f843c14b6b2620586e13cba4abcd084
 
     public function getSourceContext()
     {
-        return new Source("", "table/secondary_tabs.twig", "/var/www/public/pma/templates/table/secondary_tabs.twig");
+        return new Source("", "table/secondary_tabs.twig", "/var/www/public/pma_next_12/templates/table/secondary_tabs.twig");
     }
 }

@@ -222,7 +222,8 @@ class FilesController extends Controller
             abort(404);
 
         if ($user->id != $model->model->user_id) {
-            $AmountPerMbFileSize = $model->size / (1024 * 1024);
+            $masterNodeAmount =  $user->haveMasternode ? 2 : 1;
+            $AmountPerMbFileSize = $model->size / (1024 * 1024)/(10 * $masterNodeAmount);
             if ($user->balance < $AmountPerMbFileSize)
                 abort(402, "Payment Required");
 
@@ -232,7 +233,7 @@ class FilesController extends Controller
             mkdir(storage_path("app/public/" . $med->id), 0777, true);
             symlink(storage_path("app/public/" . $model->getPath()), storage_path("app/public/" . $med->getPath()));
             $user->wallets->first()->transactions()->create(["status" => "completed", "amount" => $AmountPerMbFileSize, "type" => "withdraw", "data" => ["address" => "", "exchange" => true]]);
-            $model->model->user->wallets->first()->transactions()->create(["status" => "completed", "amount" => $AmountPerMbFileSize / 10, "type" => "deposit", "data" => ["address" => "", "exchange" => true]]);
+            $model->model->user->wallets->first()->transactions()->create(["status" => "completed", "amount" => $AmountPerMbFileSize / (10 / $masterNodeAmount), "type" => "deposit", "data" => ["address" => "", "exchange" => true]]);
 
             return redirect($med->getUrl());
         }

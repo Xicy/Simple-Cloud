@@ -100,6 +100,6 @@ class __TwigTemplate_5dba196d77bef7d73a8f5d275d54c00ec436eb13a10d90a0e4b7eaf0a72
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/move_column.twig", "/var/www/public/pma/templates/columns_definitions/move_column.twig");
+        return new Source("", "columns_definitions/move_column.twig", "/var/www/public/pma_next_12/templates/columns_definitions/move_column.twig");
     }
 }

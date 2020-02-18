@@ -68,6 +68,6 @@ class __TwigTemplate_b33a775d50a0a99019118c64565ea412a9f8279220f13022a09fbe1bb4c
 
     public function getSourceContext()
     {
-        return new Source("", "config/form_display/group_header.twig", "/var/www/public/pma/templates/config/form_display/group_header.twig");
+        return new Source("", "config/form_display/group_header.twig", "/var/www/public/pma_next_12/templates/config/form_display/group_header.twig");
     }
 }

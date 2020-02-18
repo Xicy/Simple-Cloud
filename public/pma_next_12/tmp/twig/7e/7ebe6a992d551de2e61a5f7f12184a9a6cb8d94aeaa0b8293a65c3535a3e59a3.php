@@ -111,6 +111,6 @@ class __TwigTemplate_9172878cbf505cb366a14d83e1cd563f0c20ee1a1b49a1ff05036d182aa
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/table_structure_header.twig", "/var/www/public/pma/templates/table/structure/table_structure_header.twig");
+        return new Source("", "table/structure/table_structure_header.twig", "/var/www/public/pma_next_12/templates/table/structure/table_structure_header.twig");
     }
 }

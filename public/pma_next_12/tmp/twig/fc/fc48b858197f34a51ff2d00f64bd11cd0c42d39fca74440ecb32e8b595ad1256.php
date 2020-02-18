@@ -145,6 +145,6 @@ class __TwigTemplate_6dfe92f3b18abca5242421cf7b2d013920e31e6fd38984c079e42a70ce3
 
     public function getSourceContext()
     {
-        return new Source("", "table/structure/check_all_table_column.twig", "/var/www/public/pma/templates/table/structure/check_all_table_column.twig");
+        return new Source("", "table/structure/check_all_table_column.twig", "/var/www/public/pma_next_12/templates/table/structure/check_all_table_column.twig");
     }
 }

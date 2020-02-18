@@ -114,6 +114,6 @@ class __TwigTemplate_fa7ba141fd385cea777d95d2a2cd64155364179c535d7ccc960bb04cbf3
 
     public function getSourceContext()
     {
-        return new Source("", "columns_definitions/column_attribute.twig", "/var/www/public/pma/templates/columns_definitions/column_attribute.twig");
+        return new Source("", "columns_definitions/column_attribute.twig", "/var/www/public/pma_next_12/templates/columns_definitions/column_attribute.twig");
     }
 }
