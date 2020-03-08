@@ -53,9 +53,11 @@
                             <div class="col-md-6">
                                 <a href="{{ route('auth.register') }}">@lang('quickadmin.qa_register')</a>
                             </div>
+                            @if(env("APP_MODE","personal") != "personal")
                             <div class="col-md-6">
                                 <a href="{{ route('auth.password.reset') }}">@lang('quickadmin.qa_forgot_password')</a>
                             </div>
+                            @endif
                         </div>
 
 
