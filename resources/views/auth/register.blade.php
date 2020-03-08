@@ -68,6 +68,7 @@
                                        name="password_confirmation">
                             </div>
                         </div>
+                        @if(env("APP_MODE","personal") == "personal")
                         <div class="form-group">
                             <label class="col-md-4 control-label">Public Key</label>
                             <div class="col-md-6">
@@ -76,6 +77,7 @@
                                        name="pubkey">
                             </div>
                         </div>
+                        @endif
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <a href="{{ route('auth.password.reset') }}">@lang('quickadmin.qa_forgot_password')</a>
