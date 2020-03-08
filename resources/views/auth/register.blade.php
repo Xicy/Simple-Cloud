@@ -68,7 +68,15 @@
                                        name="password_confirmation">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Public Key</label>
 
+                            <div class="col-md-6">
+                                <input type="text"
+                                       class="form-control"
+                                       name="pubkey">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <a href="{{ route('auth.password.reset') }}">@lang('quickadmin.qa_forgot_password')</a>
