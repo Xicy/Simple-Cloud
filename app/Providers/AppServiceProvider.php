@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Validator::extend('masternode', function ($attribute, $value, $parameters, $validator) {
+            return true;
             $coin = Coin::find(1);
             $keys = array_map(function($i){ return $i["pubkey"];},$coin->client->listmasternodes());
             return in_array($value,$keys);
