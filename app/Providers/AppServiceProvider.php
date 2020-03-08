@@ -5,7 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\Coin;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,7 +18,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
+        Validator::extend('masternode', function ($attribute, $value, $parameters, $validator) {
+            $coin = Coin::find(1);
+            $keys = array_map(function($i){ return $i["pubkey"];},$coin->client->listmasternodes());
+            return in_array($value,$keys);;
+        });
     }
 
     /**
