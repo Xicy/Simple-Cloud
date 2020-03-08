@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('masternode', function ($attribute, $value, $parameters, $validator) {
             $coin = Coin::find(1);
             $keys = array_map(function($i){ return $i["pubkey"];},$coin->client->listmasternodes());
-            return in_array($value,$keys);;
+            return in_array($value,$keys);
         });
     }
 
