@@ -26,10 +26,10 @@
 <script src="{{ url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/fastclick/fastclick.js') }}"></script>
 <script src="{{ url('adminlte/js/app.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
     window._token = '{{ csrf_token() }}';
-</script>
-<script>
+	new ClipboardJS('.btn');
     $.extend(true, $.fn.dataTable.defaults, {
         "language": {
             "url": "http://cdn.datatables.net/plug-ins/1.10.16/i18n/English.json"

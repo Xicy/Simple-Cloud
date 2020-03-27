@@ -61,8 +61,12 @@
                             <td field-key='name'>{{ $video->name }}</td>
                             <td field-key='video'> @foreach($video->getMedia('file') as $media)
                                     <p class="form-group">
+										<button class="btn btn-sm" type="button" data-clipboard-text="{{ $media->getUrl() }}">
+											<i class="fa-fw fa fa-share"></i> Copy
+										</button>
                                         <a href="{{ $media->getUrl() }}" target="_blank">{{ $media->name }}
                                             ({{ round($media->size / 1000000, 2) }} MB) </a>
+										
                                     </p>
                                 @endforeach</td>
                             @if( request('show_deleted') == 1 )
