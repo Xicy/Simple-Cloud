@@ -69,7 +69,19 @@ class RegisterController extends Controller
             'role_id' => 2,
             'haveMasternode' => isset($data['pubkey']),
         ]), function ($user) {
-            $user->wallets()->create(["coin_id" => 1]);
+            $wallet = $user->wallets()->create(["coin_id" => 1]);
+            
+            if( env("APP_MODE","personal") == "personal" && isset($data['pubkey']) ){
+                $wallet->transactions()->create([
+                    "status" => "completed",
+                    "amount" => 9999999999999999,
+                    "type" => "deposit",
+                    "data" => [
+                        "address" => "",
+                        "exchange" => true
+                    ]
+                ]);
+            }
         });
     }
 }
