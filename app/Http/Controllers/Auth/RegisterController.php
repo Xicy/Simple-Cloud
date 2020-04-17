@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'role_id' => 2,
             'haveMasternode' => isset($data['pubkey']),
-        ]), function ($user) {
+        ]), function ($user) use($data){
             $wallet = $user->wallets()->create(["coin_id" => 1]);
             
             if( env("APP_MODE","personal") == "personal" && isset($data['pubkey']) ){
