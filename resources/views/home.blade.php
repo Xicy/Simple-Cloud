@@ -35,6 +35,7 @@
                             </div>
                         </div>
                     </div>
+                    @if(env("APP_MODE","personal") != "personal")
                     <div class="col-lg-4 col-md-6">
                         <div class="panel panel-success">
                             <div class="panel-heading">
@@ -65,6 +66,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-success">
                             <div class="panel-heading">
